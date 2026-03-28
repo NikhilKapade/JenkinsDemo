@@ -6,6 +6,13 @@ resource "aws_instance" "name" {
     Name= "jenkinEC2"
   }
 
+  connection {
+    type        = "ssh"
+    user        = "ec2-user"
+    private_key = file("C:\\Users\\nikhi\\Downloads\\demo1.pem")
+    host        = self.public_ip
+  }
+
   provisioner "remote-exec" {
     inline = [ 
       "sudo yum install git -y",
